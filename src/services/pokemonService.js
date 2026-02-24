@@ -10,7 +10,9 @@ const formatName = (name) => {
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
+    
 };
+
 
 /**
  * Format stat names for display
@@ -199,10 +201,6 @@ export const getPokemonByType = async (
     hasNextPage: offset + limit < pokemonList.length,
     hasPrevPage: page > 1
   };
+  
 };
 
-const pokemonWithDetails = await Promise.all(
-  data.results.map(async (pokemon) => {
-    return getPokemonDetails(pokemon.name);
-  })
-);
