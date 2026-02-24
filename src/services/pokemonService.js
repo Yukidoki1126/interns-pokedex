@@ -10,9 +10,7 @@ const formatName = (name) => {
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
-    
 };
-
 
 /**
  * Format stat names for display
@@ -160,14 +158,16 @@ export const searchPokemon = async (query) => {
 export const getPokemonTypes = async () => {
   const types = await pokemonRepository.getPokemonTypes();
 
-  return types
-    // Remove special types
-    .filter((t) => t.name !== 'unknown' && t.name !== 'shadow')
-    // Format for display
-    .map((t) => ({
-      name: t.name,
-      displayName: formatName(t.name)
-    }));
+  return (
+    types
+      // Remove special types
+      .filter((t) => t.name !== 'unknown' && t.name !== 'shadow')
+      // Format for display
+      .map((t) => ({
+        name: t.name,
+        displayName: formatName(t.name)
+      }))
+  );
 };
 
 export const getPokemonByType = async (
@@ -201,6 +201,4 @@ export const getPokemonByType = async (
     hasNextPage: offset + limit < pokemonList.length,
     hasPrevPage: page > 1
   };
-  
 };
-
